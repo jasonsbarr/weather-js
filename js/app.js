@@ -68,6 +68,7 @@ function getWeather(e) {
         .then(data => {
             ui.renderData(data);
             INPUT_SEARCH.value = '';
+            clearTimeout(searchDelay);
             ui.toggleSpinner();
         })
         .catch(error => {
@@ -88,8 +89,7 @@ function showOptions(query) {
     // Get options from MapQuest API
     map.fetchOptions(query)
     // Populate datalist with options
-    .then(options => ui.listOptions(options))
-    .catch(() => ui.showError("An error occured. Please try again."));
+    .then(options => ui.listOptions(options));
 }
 
 function getInitWeather() {
