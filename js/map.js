@@ -13,15 +13,29 @@ class Map {
      * Fetch coordinates for city + state from MapQuest API
 
      */
-    async fetchCoordinates(city, state) {
-        // Set URL to city + state
-        let url = `http://www.mapquestapi.com/geocoding/v1/address?key=${this.apiKey}&location=${city}%2C${state.replace(' ', '+')}`;
+    async fetchCoordinates(location) {
+        // Set URL to query location
+        let url = `http://www.mapquestapi.com/geocoding/v1/address?key=${this.apiKey}&location=${location}`;
 
         // Get response from MQ server
-        let coordsJson = await fetch(url)
+        let coordsJson = await fetch(encodeURI(url))
             .then(response => response.json())
             .catch(error => console.log(error));
 
         return coordsJson.results[0].locations[0].latLng;
+    }
+
+    /**
+     * Fetch options from MQ API to populate search datalist
+     * 
+     * @param {string} query Input from search form
+     */
+    async fetchOptions(query) {
+        let url = `http://www.mapquestapi.com/search/v3/prediction?key=${this.apiKey}&limit=7&collection=adminArea&countryCode=us,ca,mx&q=${query}`;
+
+        let optionsResponse = await fetch(encodeURI(url))
+        .then(response => response.json());
+
+        return optionsResponse.results;
     }
 }

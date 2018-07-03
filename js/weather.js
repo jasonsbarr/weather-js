@@ -19,7 +19,7 @@ class Weather {
     /**
      * Get weather data for Map coordinates from OWM API
      */
-    async getWeather(coords) {
+    async fetchWeather(coords) {
         let url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lng}&APPID=${wx.apiKey}`;
         
         let wxResponse = await fetch(url);

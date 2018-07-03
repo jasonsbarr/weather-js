@@ -1,6 +1,8 @@
 class UI {
     /**
      * Populate datalist#states-list with states + D.C.
+     * 
+     * @deprecated // Don't need it anymore since switching to single search box
      */
     async listStates() {
         // Get array of states from data/states.json
@@ -15,6 +17,21 @@ class UI {
             option.textContent = option.value = state;
             
             STATES_LIST.appendChild(option);
+        });
+    }
+
+    /**
+     * Add options returned from MapQuest API to search datalist
+     * 
+     * @param {Object} options 
+     */
+    listOptions(options) {
+        options.forEach(option => {
+            let item = document.createElement('option');
+            
+            item.value = option.displayString;
+
+            SEARCH_LIST.appendChild(item);
         });
     }
 }
