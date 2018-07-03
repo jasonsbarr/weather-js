@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <style>
+        #search:focus {
+            box-shadow: none;
+        }
         .loader-container {
             position: absolute;
             top: 0;
@@ -31,16 +34,16 @@
         <div class="row">
             <div id="wrapper" class="col-md-8 rounded mx-auto text-center p-5 mt-4 mb-4 text-center bg-primary">
                 <form id="w-form">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="form-group">
+                    <div class="row bg-white rounded border-0 shadow">
+                        <div class="col-md-10 pl-0">
+                            <div class="form-group mb-0 border-0">
                                 <label for="search" class="sr-only">City</label>
-                                <input type="search" id="search" list="search-list" class="form-control bg-light shadow" placeholder="Enter a location in the United States, Canada, or Mexico" autofocus>
+                                <input type="search" id="search" list="search-list" class="form-control bg-white border-0" placeholder="Enter a location in the United States, Canada, or Mexico" autofocus>
                                 <datalist id="search-list"></datalist>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-danger form-control">
+                        <div class="col-md-2 pr-0">
+                            <button type="submit" class="btn btn-danger form-control border-0" style="margin-right: -1px;">
                                     <i class="fas fa-search"></i>
                             </button>
                         </div>
