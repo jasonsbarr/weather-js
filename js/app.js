@@ -4,6 +4,15 @@
 const W_FORM = document.getElementById('w-form');
 const INPUT_SEARCH = document.getElementById('search');
 const SEARCH_LIST = document.getElementById('search-list');
+const W_LOCATION = document.getElementById('w-location');
+const W_DESC = document.getElementById('w-desc');
+const W_STRING = document.getElementById('w-string');
+const W_ICON = document.getElementById('w-icon');
+const W_DETAILS = document.getElementById('w-details');
+const W_HUMIDITY = document.getElementById('w-humidity');
+const W_PRESSURE = document.getElementById('w-pressure');
+const W_WIND = document.getElementById('w-wind');
+const W_CLOUD_COVER = document.getElementById('w-cloud-cover');
 
 /**
  * Instantiate objects
@@ -50,18 +59,27 @@ W_FORM.addEventListener('submit', getWeather);
 
 function getWeather(e) {
     e.preventDefault();
+    ui.toggleSpinner();
 
     // Get map coordinates
     map.fetchCoordinates(INPUT_SEARCH.value)
     .then(coords => {
         wx.fetchWeather(coords)
         .then(data => {
+            ui.renderData(data);
             console.log(data);
             INPUT_SEARCH.value = '';
+            ui.toggleSpinner();
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error)
+            ui.toggleSpinner();
+        });
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+        console.log(error);
+        ui.toggleSpinner();
+    });
 }
 
 function showOptions(query) {

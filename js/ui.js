@@ -34,4 +34,62 @@ class UI {
             SEARCH_LIST.appendChild(item);
         });
     }
+
+    renderData(data) {
+        // Show location
+        W_LOCATION.textContent = map.location;
+
+        // Show icon
+        W_ICON.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+        W_ICON.alt = `${data.weather[0].description} weather icon`;
+
+        // Show summary
+        let temp = parseInt(wx.kelToF(data.main.temp));
+        W_DESC.innerHTML = `${data.weather[0].main} and ${temp}&deg;`;
+
+        // Show humidity
+        W_HUMIDITY.textContent = `Relative humidity is ${data.main.humidity}%`;
+
+        // Show barometric pressure
+        let pressure = wx.hPaToInHg(data.main.pressure).toPrecision(2);
+        W_PRESSURE.textContent = `Barometric pressure is ${pressure} inHg`;
+
+        // Show wind speed and direction
+        let windSpeed = wx.msToMph(data.wind.speed).toPrecision(1);
+        W_WIND.innerHTML = `Wind is blowing at ${windSpeed} miles/hour from direction of ${data.wind.deg}&deg;`;
+
+        // Show cloud cover in percent
+        W_CLOUD_COVER.textContent = `Cloud cover is ${data.clouds.all}%`
+    }
+
+    // Show spinner while loading
+    toggleSpinner() {
+        if (!W_DETAILS.classList.contains('loading')) {
+            W_DETAILS.classList.add('loading');
+            // position: relative to position loader container
+            document.body.style.position = 'relative';
+
+            // Create div and assign class for styling 
+            let div = document.createElement('div');
+            div.className = 'loader-container';
+            div.id = 'loader-container';
+
+            // Create img for loader
+            let loader = document.createElement('img');
+            loader.alt = 'Loading...';
+            loader.title = 'Loading...';
+            loader.src = 'img/loader.gif';
+            loader.width = 48;
+            loader.classList = 'loader';
+
+            // Add loader to container
+            div.appendChild(loader);
+
+            // Add div to page
+            document.body.appendChild(div);
+        } else {
+            W_DETAILS.classList.remove('loading');
+            document.getElementById('loader-container').remove();
+        }
+    }
 }

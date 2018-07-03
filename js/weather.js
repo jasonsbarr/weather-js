@@ -54,4 +54,29 @@ class Weather {
 
         return check;
     }
+
+    /**
+     * Convert temperature in Kelvins to degrees Fahrenheit
+     * @param {float} kelvin 
+     */
+    kelToF(kelvin) {
+        return (kelvin * 9/5) - 459.67;
+    }
+
+    /**
+     * Convert barometric pressure from hPa to in+Hg
+     * @param {integer} hpa 
+     */
+    hPaToInHg(hpa) {
+        return hpa * 0.02953;
+    }
+
+    /**
+     * Convert wind speed from meters/second to miles/hour
+     * 
+     * @param {float} ms 
+     */
+    msToMph(ms) {
+        return ms * 2.23694;
+    }
 }

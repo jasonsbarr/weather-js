@@ -14,8 +14,10 @@ class Map {
 
      */
     async fetchCoordinates(location) {
+        // Set location so UI can access it
+        this.location = location;
         // Set URL to query location
-        let url = `http://www.mapquestapi.com/geocoding/v1/address?key=${this.apiKey}&location=${location}`;
+        let url = `https://www.mapquestapi.com/geocoding/v1/address?key=${this.apiKey}&location=${location}`;
 
         // Get response from MQ server
         let coordsJson = await fetch(encodeURI(url))
@@ -31,7 +33,7 @@ class Map {
      * @param {string} query Input from search form
      */
     async fetchOptions(query) {
-        let url = `http://www.mapquestapi.com/search/v3/prediction?key=${this.apiKey}&limit=7&collection=adminArea&countryCode=us,ca,mx&q=${query}`;
+        let url = `https://www.mapquestapi.com/search/v3/prediction?key=${this.apiKey}&limit=7&collection=adminArea&countryCode=us,ca,mx&q=${query}`;
 
         let optionsResponse = await fetch(encodeURI(url))
         .then(response => response.json());
