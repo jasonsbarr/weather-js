@@ -1,7 +1,6 @@
 /**
  * UI elements
  */
-const LOC_MODAL = document.getElementById('locModal');
 const W_FORM = document.getElementById('w-form');
 const INPUT_CITY = document.getElementById('city');
 const INPUT_STATE = document.getElementById('state');
@@ -19,10 +18,6 @@ let ui = new UI();
  */
 // Populate state list on DOM loaded
 window.addEventListener('DOMContentLoaded', (e) => ui.listStates());
-
-// Set modal button to trigger focus on city field
-// Related note: I fucking hate that Bootstrap uses jQuery
-$(LOC_MODAL).on('shown.bs.modal', (e) => INPUT_CITY.focus());
 
 // Set City and state
 W_FORM.addEventListener('submit', submitWeatherForm);
