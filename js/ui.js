@@ -56,7 +56,7 @@ class UI {
 
         // Show wind speed and direction
         let windSpeed = wx.msToMph(data.wind.speed).toFixed(1);
-        W_WIND.innerHTML = `Wind is blowing at ${windSpeed} miles/hour from direction of ${data.wind.deg}&deg;`;
+        W_WIND.innerHTML = `Wind is blowing at ${windSpeed} miles/hour from direction of ${data.wind.deg.toFixed(0)}&deg;`;
 
         // Show cloud cover in percent
         W_CLOUD_COVER.textContent = `Cloud cover is ${data.clouds.all}%`

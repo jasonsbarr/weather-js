@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeatherJS</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/cerulean/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <style>
         .loader-container {
             position: absolute;
@@ -28,23 +29,29 @@
     <div class="container">
         <h2 class="text-center mt-3">WeatherJS Search</h2>
         <div class="row">
-            <div id="wrapper" class="col-md-6 rounded mx-auto text-center p-5 mt-4 mb-4 text-center bg-primary">
+            <div id="wrapper" class="col-md-8 rounded mx-auto text-center p-5 mt-4 mb-4 text-center bg-primary">
                 <form id="w-form">
-                    <div class="form-group">
-                        <label for="search" class="sr-only">City</label>
-                        <input type="search" id="search" list="search-list" class="form-control bg-light shadow" placeholder="Enter a location in the United States, Canada, or Mexico" autofocus>
-                        <datalist id="search-list"></datalist>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label for="search" class="sr-only">City</label>
+                                <input type="search" id="search" list="search-list" class="form-control bg-light shadow" placeholder="Enter a location in the United States, Canada, or Mexico" autofocus>
+                                <datalist id="search-list"></datalist>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger form-control">
+                                    <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-danger form-control">
-                        Get Weather
-                    </button>
                 </form>
-                <div class="mt-5">
+                <div class="mt-3">
                     <h1 id="w-location"></h1>
                     <h3 class="text-dark" id="w-desc"></h3>
                     <h3 id="w-string"></h3>
                     <img src="" alt="" id="w-icon" width="85">
-                    <ul class="list-group mt-3" id="w-details">
+                    <ul class="list-group mt-3 mx-auto col-md-9" id="w-details">
                         <li class="list-group-item" id="w-humidity"></li>
                         <li class="list-group-item" id="w-pressure"></li>
                         <li class="list-group-item" id="w-wind"></li>
