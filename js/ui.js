@@ -51,11 +51,11 @@ class UI {
         W_HUMIDITY.textContent = `Relative humidity is ${data.main.humidity}%`;
 
         // Show barometric pressure
-        let pressure = wx.hPaToInHg(data.main.pressure).toPrecision(2);
+        let pressure = wx.hPaToInHg(data.main.pressure).toFixed(2);
         W_PRESSURE.textContent = `Barometric pressure is ${pressure} inHg`;
 
         // Show wind speed and direction
-        let windSpeed = wx.msToMph(data.wind.speed).toPrecision(1);
+        let windSpeed = wx.msToMph(data.wind.speed).toFixed(1);
         W_WIND.innerHTML = `Wind is blowing at ${windSpeed} miles/hour from direction of ${data.wind.deg}&deg;`;
 
         // Show cloud cover in percent
