@@ -18,10 +18,10 @@ class Map {
         let url = `http://www.mapquestapi.com/geocoding/v1/address?key=${this.apiKey}&location=${city}%2C${state.replace(' ', '+')}`;
 
         // Get response from MQ server
-        let coordsResponse = await fetch(url);
+        let coordsJson = await fetch(url)
+            .then(response => response.json())
+            .catch(error => console.log(error));
 
-        let coordsJson = await coordsResponse.json();
-        
         return coordsJson.results[0].locations[0].latLng;
     }
 }
