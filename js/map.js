@@ -6,7 +6,7 @@ class Map {
         // Set API key and get coordinates
         fetch('env.json').then(response => response.json())
         .then(env => this.apiKey = env.mqApiKey)
-        .catch(error => document.body.innerHTML = "App failed to initialize");
+        .catch(() => document.body.innerHTML = "App failed to initialize");
     }
 
     /**
