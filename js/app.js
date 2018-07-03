@@ -24,8 +24,8 @@ let ui = new UI();
 /**
  * Event Listeners
  */
-// Populate state list on DOM loaded
-// window.addEventListener('DOMContentLoaded', (e) => ui.listStates());
+// Get user's current location info on DOMContentLoaded
+window.addEventListener('DOMContentLoaded', getInitWeather);
 
 // Query MQ Search Ahead API on INPUT_SEARCH submit
 let searchDelay;
@@ -64,7 +64,7 @@ function getWeather(e) {
     // Get map coordinates
     map.fetchCoordinates(INPUT_SEARCH.value)
     .then(coords => {
-        wx.fetchWeather(coords)
+        wx.fetchWeather(coords.lat, coords.lng)
         .then(data => {
             ui.renderData(data);
             INPUT_SEARCH.value = '';
@@ -90,4 +90,22 @@ function showOptions(query) {
     // Populate datalist with options
     .then(options => ui.listOptions(options))
     .catch(() => ui.showError("An error occured. Please try again."));
+}
+
+function getInitWeather() {
+    ui.toggleSpinner();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition((position) => {
+            wx.fetchWeather(position.coords.latitude, position.coords.longitude)
+            .then(data => {
+                map.location = 'Your current location';
+                ui.renderData(data);
+                ui.toggleSpinner();
+            })
+            .catch(() => {
+                ui.showError('The data could not be found. Please reload the page and try again.');
+                ui.toggleSpinner();
+            });
+        });
+    }
 }
