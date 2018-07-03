@@ -22,33 +22,33 @@ window.addEventListener('DOMContentLoaded', (e) => ui.listStates());
 // Set City and state
 W_FORM.addEventListener('submit', submitWeatherForm);
 
-async function nameInCitiesList(cityInput) {
-    // Fetch list of cities
-    let citiesListResponse = await fetch('data/cities.json');
-    let cities = await citiesListResponse.json();
+// TURNS OUT I DON'T NEED THIS
+// async function nameInCitiesList(cityInput) {
+//     // Fetch list of cities
+//     let citiesListResponse = await fetch('data/cities.json');
+//     let cities = await citiesListResponse.json();
 
-    // See if city name is in list
-    cities.some((city, index, array) => {
-        if (city.name === cityInput) {
-            wx.cities = cities;
-            return true;
-        } else if (index === (array.length - 1)) {
-            throw new Error('City not in list');
-        }
-    });
-}
+//     // See if city name is in list
+//     cities.some((city, index, array) => {
+//         if (city.name === cityInput) {
+//             wx.cities = cities;
+//             return true;
+//         } else if (index === (array.length - 1)) {
+//             throw new Error('City not in list');
+//         }
+//     });
+// }
 
 function submitWeatherForm(e) {
     e.preventDefault();
-    let city = INPUT_CITY.value;
-    // Check if city is in cities list
-    // Turns out this isn't actually necessary but I'm leaving it in anyway
-    nameInCitiesList(city).then(() => {
-        // Set city and state to get map coordinates
-        map.setCityAndState(city, INPUT_STATE.value);
-    
-        // Get weather info
-        wx.getWeather();
+
+    // Get map coordinates
+    map.fetchCoordinates(INPUT_CITY.value, INPUT_STATE.value)
+    .then(coords => {
+        wx.getWeather(coords)
+        .then(data => console.log(data))
     })
-    .catch(error => console.log(error.message));
+    
+    // Get weather info
+    // wx.getWeather();
 }

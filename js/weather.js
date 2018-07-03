@@ -19,19 +19,14 @@ class Weather {
     /**
      * Get weather data for Map coordinates from OWM API
      */
-    getWeather() {
-        // Convert city + state to coordinates
-        map.fetchCoordinates(city, state)
-        .then(() => {
-            // Hit OWM API with request
-            let url = `https://api.openweathermap.org/data/2.5/weather?lat=${map.coords.lat}&lon=${map.coords.lng}&APPID=${wx.apiKey}`;
-            
-            fetch(url)
-            .then(response => response.json())
-            .then(data => this.data = data)
-            .catch(error => console.log(error))
-        })
-        .catch(error => console.log(error))
+    async getWeather(coords) {
+        let url = `https://api.openweathermap.org/data/2.5/weather?lat=${coords.lat}&lon=${coords.lng}&APPID=${wx.apiKey}`;
+        
+        let wxResponse = await fetch(url);
+        
+        let wxData = await wxResponse.json();
+
+        return wxData;
     }
 
     /**
