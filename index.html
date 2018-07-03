@@ -10,31 +10,27 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 rounded mx-auto">
-                <div class="rounded text-center bg-secondary p-5 mt-4 mx-5">
-                    <form id="w-form">
-                        <div class="form-group">
-                            <label for="search" class="sr-only">City</label>
-                            <input type="search" id="search" list="search-list" class="form-control" placeholder="Enter a location in the United States, Canada, or Mexico" autofocus>
-                            <datalist id="search-list"></datalist>
-                        </div>
-                        <button type="submit" class="btn btn-primary form-control">
-                            Get Weather
-                        </button>
-                    </form>
-                </div>
-                <div class="text-center bg-primary rounded p-5 m-5">
-                    <h1 id="w-location"></h1>
-                    <h3 class="text-dark" id="w-desc"></h3>
-                    <h3 id="w-string"></h3>
-                    <img src="" alt="" id="w-icon">
-                    <ul class="list-group mt-3" id="w-details">
-                        <li class="list-group-item" id="w-humidity"></li>
-                        <li class="list-group-item" id="w-pressure"></li>
-                        <li class="list-group-item" id="w-wind"></li>
-                        <li class="list-group-item" id="w-cloud-cover"></li>
-                    </ul>
-                </div>
+            <div class="col-md-8 rounded mx-auto text-center p-5 mt-4 text-center bg-primary">
+                <form id="w-form">
+                    <div class="form-group">
+                        <label for="search" class="sr-only">City</label>
+                        <input type="search" id="search" list="search-list" class="form-control border-info" placeholder="Enter a location in the United States, Canada, or Mexico" autofocus>
+                        <datalist id="search-list"></datalist>
+                    </div>
+                    <button type="submit" class="btn btn-danger form-control">
+                        Get Weather
+                    </button>
+                </form>
+                <h1 id="w-location"></h1>
+                <h3 class="text-dark" id="w-desc"></h3>
+                <h3 id="w-string"></h3>
+                <img src="" alt="" id="w-icon">
+                <ul class="list-group mt-3" id="w-details">
+                    <li class="list-group-item" id="w-humidity"></li>
+                    <li class="list-group-item" id="w-pressure"></li>
+                    <li class="list-group-item" id="w-wind"></li>
+                    <li class="list-group-item" id="w-cloud-cover"></li>
+                </ul>
             </div>
         </div>
     </div>
