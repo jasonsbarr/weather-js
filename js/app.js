@@ -67,17 +67,16 @@ function getWeather(e) {
         wx.fetchWeather(coords)
         .then(data => {
             ui.renderData(data);
-            console.log(data);
             INPUT_SEARCH.value = '';
             ui.toggleSpinner();
         })
         .catch(error => {
-            console.log(error)
+            ui.showError("The data could not be found. Please try again.")
             ui.toggleSpinner();
         });
     })
     .catch(error => {
-        console.log(error);
+        ui.showError("The data could not be found. Please try again.")
         ui.toggleSpinner();
     });
 }
@@ -90,5 +89,5 @@ function showOptions(query) {
     map.fetchOptions(query)
     // Populate datalist with options
     .then(options => ui.listOptions(options))
-    .catch(error => console.log(error));
+    .catch(() => ui.showError("An error occured. Please try again."));
 }

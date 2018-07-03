@@ -92,4 +92,15 @@ class UI {
             document.getElementById('loader-container').remove();
         }
     }
+
+    showError(msg) {
+        if (document.getElementById('error')) {
+            document.getElementById('error').remove();
+        }
+        let err = document.createElement('div');
+        err.classList = 'alert alert-danger col-md-6 mx-auto mt-5';
+        err.id = 'error';
+        err.textContent = msg;
+        document.querySelector('.container').insertBefore(err, document.querySelector('.row'));
+    }
 }

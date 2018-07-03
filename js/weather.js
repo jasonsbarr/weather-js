@@ -13,7 +13,7 @@ class Weather {
     setApiKey() {
         fetch('env.json').then(response => response.json())
         .then(env => this.apiKey = env.owmApiKey)
-        .catch(() => document.body.innerHTML = "App failed to initialize");
+        .catch(() => ui.showError("App failed to initialize"));
     }
 
     /**
