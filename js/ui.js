@@ -40,7 +40,7 @@ class UI {
         W_LOCATION.textContent = map.location;
 
         // Show icon
-        W_ICON.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+        W_ICON.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
         W_ICON.alt = `${data.weather[0].description} weather icon`;
 
         // Show summary
